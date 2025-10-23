@@ -1,11 +1,10 @@
 # Session 2 - The Cequel
 
 Welcome to the Cequel! 
-<small> See what I did there </small>
 
-I hope you enjoyed Session 1 and are now comfortable with using variables, for loops, and if statements to create very basic **C** programs (including commenting and being able to compile your code), and are familiar with arrays and the interesting part of **C**: undefined behaviour and how you can do many things in **C** which shouldn't be allowed (we'll see some more examples in this session!).  
+I hope you enjoyed Session 1 and are now comfortable with using variables, for loops, and if statements to create very basic **C** programs (including commenting and being able to compile your code), and are familiar with arrays and undefined behaviour (and how you can do many things in **C** which shouldn't be allowed).
 
-It's getting to the harder - but more interesting - stuff. **Don't worry if you don't finish the session in time**, you can always finish off Session 2 in the Session 3 workshop! We have an optional Session 4 for a reason (there are also optional problems in Session 4 for those who have finished Sessions 1-3).
+**Don't worry if you don't finish the session in time**, you can always finish off Session 2 in the Session 3 workshop! We have an optional Session 4 for a reason (which also has optional problems).
 
 Good luck and happy coding!
 
@@ -64,7 +63,7 @@ These variables correspond to the following address table:
 
 We can see that the variable **a** has been stored at 6422039, and that variable **b** has been stored at 6422040 (the next **memory address**). These **memory addresses** tell you where you'd find the variables in all of the RAM your computer is currently using so they tend to be fairly large values.
 
- Memory addresses are actually in **binary** (which uses only 2 symbols: `0, 1`) and converting to **denary** (our numbering system which uses 10 symbols: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9`) is a bit of a pain, so we don't usually represent addresses with denary. However, because of the large values that memory addresses tend to be, we can't exactly read them in their binary form since you get values like this: `11000011111111000010111` (`6422039` in binary). 
+ Memory addresses are actually in **binary** (which uses only 2 symbols: `0, 1`) and converting to **denary** (our numbering system which uses 10 symbols: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9`) is a bit of a pain, so we don't usually represent addresses with denary. However, because of the large values that memory addresses tend to be, we can't exactly read them in their binary form since you get values like this: `11000011111111000010111` (`6422039` in dernary). 
 
  Therefore, we typically represent addresses using **hexadecimal** (which uses 16 symbols: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F`) which is both more compact than binary and, unlike denary, can be easily converted to and from binary. 
  
@@ -77,7 +76,7 @@ We can see that the variable **a** has been stored at 6422039, and that variable
 
 ### <a name="ThePoint"> The Point </a>
 
-It turns out that we can actually access the memory address of a variable in **C**, with the **address** operator (**&**). This returns a value which is the memory address of a variable so this value is said to **point** to that variable. This value is a **pointer**! Pointers have their own format specifier **%p** (**p** for **p**ointer) which we'll use to inspect some pointers:
+We can access the memory address of a variable in **C**, with the **address** operator (**&**). This returns a value which is the memory address of a variable so this value is said to **point** to that variable. This value is a **pointer**! Pointers have their own format specifier **%p** (**p** for **p**ointer) which we'll use to inspect some pointers:
 
 ```c
 char a = 5;
@@ -89,7 +88,7 @@ printf("%p\n", &b); // 61FE18
 
 So we know variable **a** is stored at memory address `61FE17`, and variable **b** is stored at memory address `61FE18`. 
 
-So far, we've only been dealing with pointers to **char** which is convenient since each char takes up **1 byte** in most machines, and each bit of memory (that has an address) stores **1 byte** of memory; what about ints which typically take up **4 bytes**? How are these stored in memory? 
+Char takes up **1 byte** in most machines; what about ints which typically take up **4 bytes**? How are these stored in memory? 
 
 ```c
 int a = 7;
@@ -104,7 +103,7 @@ This can be visualised:
 ![Image showcasing how integers are stored in memory](images/integerStoredInMemory.png)
 *Red cells are taken up by int a, blue cells are taken up by int b*
 
-Since each cell (bit of memory) can store 1 byte and ints take up 4 bytes, each int covers 4 cells. The pointer contains the memory address of the first cell; when you check the contents of a variable using its pointer, you have to keep in mind the number of bytes it takes up so you know how many cells to check.  
+Since each cell can store 1 byte and ints take up 4 bytes, each int covers 4 cells. The pointer contains the memory address of the first cell; when you check the contents of a variable using its pointer, keep in mind the number of bytes it takes up so you know how many cells to check.  
 
 We can also initialise variables for pointers which require:
 1) the **type** of value it's pointing to 
@@ -114,7 +113,7 @@ We can also initialise variables for pointers which require:
 
 ![Image showcasing syntax of pointers in C](images/PointerDeclarationSyntax.PNG)
 
-Of course, you can opt to just *declare* the pointer and not give it a value but this will lead to undefined behaviour.
+Of course, you can just *declare* the pointer and not give it a value but this will lead to undefined behaviour.
 
 Interestingly, the position of the **\*** doesn't matter as long as it's between the type and the name of the pointer. All of the following are valid pointer declarations:
 ```c
@@ -147,7 +146,7 @@ printf("%d\n", a); // 4
 
 ### <a name="NullPointer"> The Null Pointer </a>
 
-There's a special kind of pointer that points to no memory address called the **null** pointer. This value is special because any type of pointer can be set to **null**!
+There's a special kind of pointer that points to no memory address, called the **null** pointer. Any type of pointer can be set to **null**!
 
 ```c
 int* p1 = NULL;
@@ -189,7 +188,6 @@ Can you print your name out using binary or hex values?
 ## <a name="Functions"> Functions </a>
 
 If you want to write good code, then you want to write organised code. You want to write code that easily clicks into place with other code like lego, and can be easily reused.
-This is called **adaptability:** how easily and quickly you can modify your code to introduce new features. 
 
 We can organise our code more with **functions**, which we've already been using (**printf** is a function)! A function is a block of code that we can execute by **calling** the function, with some properties:
 - you can pass values to the function by calling the function with **arguments**; think about *printf* - it wouldn't be very useful if you couldn't pass it the values you want to output 
@@ -845,8 +843,6 @@ Next session, we'll equip you with the tools to write larger and more complex pr
 If you're not tired of **C** by then, then remember there's a bonus session on the 30th October - hopefully, I'll **C** you there!
 
 ## <a name="OptionalExercises"> Optional Exercises </a> 
-
-*Solutions for the Optional Exercises will be released at a later date* 
 
 1) An ArrayList is a data structure that expands when you run out of space to put elements in. Create an ArrayList by initialising the following function prototypes:
 
