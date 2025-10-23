@@ -8,7 +8,7 @@ This session focuses on pointers, functions, and memory allocation; these are **
 
 The C Course is a 4-week long course on the basics of C Programming made by UWCS (University of Warwick Computing Society).
 
-You can find out more about the society at [their website](https://uwcs.co.uk). 
+You can find out more about the society at [our website](https://uwcs.co.uk). 
 
 ## How to use this repository
 
@@ -16,7 +16,7 @@ If you're using DCS machines and don't know how to navigate Linux, use the [Linu
 
 1) First, clone the repository. If you're new to git then go to the folder you want to store the session in, and run:
 ```sh
-git clone https://github.com/RexMortem/C_Course-The_Cequel
+git clone https://github.com/UWCS/C_Course-The_Cequel
 ```
 
 2) Read **Session2.pdf**; if you're on DCS machines, you can do this using **evince** or **okular** among other tools. If you're using your own machine, then most web browsers should work. Regardless of the device, I personally prefer opening pdfs in Chrome, Firefox or similar. 
@@ -28,7 +28,7 @@ git clone https://github.com/RexMortem/C_Course-The_Cequel
 
 ## Contact Us 
 
-If there are any problems with the course or suggestions (especially with improving how digestible the content is), then please contact the society on **discord** (can be found on [their site](https://uwcs.co.uk/)), or contact me on **discord** at `RexMortem60`. 
+If there are any problems with the course or suggestions (especially with improving how digestible the content is), then please contact the society on **discord** (can be found on [our site](https://uwcs.co.uk/)).
 
 ## Acknowledgements 
 
