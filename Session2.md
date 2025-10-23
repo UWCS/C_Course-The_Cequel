@@ -347,7 +347,7 @@ int main(){
 }
 ```
 
-It should output "oopsie!" and then signal to you that something went wrong. 
+It should output "oopsie!" and then signal to you that something went wrong (IDE/compiler dependent).
 
 **Note:** **C** compilers used to require you to explicitly return `0` from main and so there will be some compilers that error if you don't, so it's considered good practice to **use return** in your main function. Often, `-1` is used to signal incorrect execution.
 
